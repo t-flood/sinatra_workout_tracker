@@ -7,5 +7,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
-use Rack::Session::Cookie
+use SessionsController
+use WorkoutsController
+use UsersController
 run ApplicationController

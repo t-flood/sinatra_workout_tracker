@@ -7,14 +7,4 @@ class ApplicationController < Sinatra::Base
       set :session_secret, "auth"
   end
 
-  get '/' do
-    session[:greeting] = "Hello World"
-    response.set_cookie 'credit_amount', '100'
-    "Hello World!"
-  end
-
-  get '/remember' do
-    "You have #{request.cookies['credit_amount']} cookies."
-  end
-
 end
