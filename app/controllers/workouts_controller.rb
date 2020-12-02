@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
     if !logged_in?
       redirect "/login" #redirect if they are not
     else
-      "A new workout form" #render if they are
+      erb :'workouts/new.html' #render if they are
     end
   end
 
