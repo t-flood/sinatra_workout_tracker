@@ -16,7 +16,11 @@ class WorkoutsController < ApplicationController
     if !logged_in?
       redirect "/login"
     else
-      "An edit workout form"
+      if workout = current_user.workouts.find_by(params[:id])
+        "An edit workout form #{current_user.id} is editing #{workout.id}"
+      else
+        redirect '/workouts'
+      end
     end
   end
 
