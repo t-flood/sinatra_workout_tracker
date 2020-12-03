@@ -1,28 +1,28 @@
 class WorkoutsController < ApplicationController
 
   get '/workouts' do
-    "You are logged in as #{session[:email]}. Here is a list of the latest workouts" #list of workouts
+    redirect_if_not_logged_in
+    @workouts = Workout.all
+    erb :'workouts/index'
   end
 
-  get '/workouts/new' do #checks if they are logged in
-    if !logged_in?
-      redirect "/login" #redirect if they are not
-    else
-      erb :'workouts/new.html' #render if they are
-    end
+  get '/workouts/new' do
+    redirect_if_not_logged_in
+    erb :'workouts/new'
   end
 
   get '/workouts/:id/edit' do
-    if !logged_in?
-      redirect "/login"
-    else
-      if workout = current_user.workouts.find_by(params[:id])
-        "An edit workout form #{current_user.id} is editing #{workout.id}"
-      else
-        redirect '/workouts'
-      end
-    end
+    redirect_if_not_logged_in
+    @workout = Workout.find(params[:id])
+    erb :'workouts/edit'
   end
+
+  post '/workouts' do
+    redirect_if_not_logged_in
+    @workout = Workout.create(params)
+    redirect "/workouts/:id/edit"
+  end
+
 
   get '/logout' do
     session.clear

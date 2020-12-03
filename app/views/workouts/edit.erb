@@ -1,0 +1,11 @@
+<h1>Edit workout: <%= @workout.title %></h1>
+
+<form action="/workouts/<%=@workout.id %>" method="POST">
+  <label> Exercises:</label>
+  <input type="text" name="exercise" value="<%=@workout.exercise.title%>">
+  <input type="integer" name="sets" value="<%=@workout.exercise.sets%>">
+  <input type="integer" name="reps" value="<%=@workout.exercise.reps%>">
+   <input type="integer" name="weight" value="<%=@workout.exercise.weight%>">
+  <br>
+  <input type="submit" value="Update">
+</form>

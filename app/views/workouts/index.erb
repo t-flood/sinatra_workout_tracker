@@ -1,1 +1,12 @@
-<h1>List of workouts</h1>
+<h1>Workouts</h1>
+  <% @workouts.each do |workout| %>
+    <h2>Workout Title: <%= workout.title %></h2>
+      <h3>Exercises</h3>
+    <ul>
+      <% @workouts.exercises.each do |exercise| %>
+        <li><a href="/workouts/<%=exercise.id %>"> <%= exercise.title %> <%=exercise.sets%> <%=exercise.reps%> @ <%=exercise.weight%> </a></li>
+      <%end%>
+    </ul>
+    <a href="/workouts/<%=@workouts.id %>/edit"> Edit </a>
+    <br>
+  <%end%>
